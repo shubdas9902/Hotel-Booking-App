@@ -14,6 +14,7 @@ const useSignUp = () => {
             
             const res=await fetch("http://localhost:5000/api/auth/register",{
                 method:"POST",
+                credentials: "include",
                 headers:{"Content-Type":"application/json"},
                 body:JSON.stringify({firstname,lastname,email,password,confirmPassword})
             })
@@ -24,8 +25,8 @@ const useSignUp = () => {
                 console.log(data.error)
                 throw new Error(data.error)
             }
-            localStorage.setItem("app-user",JSON.stringify(data))
-            setAuthUser(data)
+            
+            setAuthUser(true)
         } catch (error) {
             toast.error(error.message)
         }finally{
@@ -51,3 +52,4 @@ function handleInputErrors({firstname,lastname,email,password,confirmPassword}){
 
     return true
 }
+

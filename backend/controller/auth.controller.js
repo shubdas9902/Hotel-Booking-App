@@ -81,3 +81,11 @@ export const login=async(req,res)=>{
         res.status(500).json({error:"Internal Server Error"})
     }
 }
+
+export const validate=async(req,res)=>{
+    try {
+        res.status(200).json({userId:req.user._id})
+    } catch (error) {
+        res.status(500).json({error:"Internal Server Error"})
+    }
+}

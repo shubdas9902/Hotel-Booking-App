@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useAuthContext } from '../context/Authcontext'
 
 
 const Header = () => {
+  const {authUser}=useAuthContext()
   return (
     <div className='bg-blue-800 py-6'>
         <div className="container mx-auto flex justify-between">
@@ -10,9 +12,19 @@ const Header = () => {
                <Link to="/">MernHolidays.com</Link>
             </span>
             <span className='flex space-x-2'>
+              {authUser ? <>
+                <Link to='/bookings' className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100'>
+                  Bookings
+                </Link>
+                <Link to='/hotels' className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100'>
+                  Hotels
+                </Link>
+                <button className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100'> Sign Out </button>
+
+              </>:
                 <Link to='/signup' className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100'>
                   SignIn
-                </Link>
+                </Link>}
             </span>
             
 

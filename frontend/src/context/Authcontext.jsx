@@ -1,4 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import validate from "../hooks/validate";
+
 
 export const AuthContext = createContext();
 
@@ -8,7 +10,11 @@ export const useAuthContext = () => {
 };
 
 export const AuthContextProvider = ({ children }) => {
-	const [authUser, setAuthUser] = useState(JSON.parse(localStorage.getItem("app-user")) || null);
+	const [authUser, setAuthUser] = useState(null);
+
+	useEffect(() => {
+		validate(setAuthUser); // Pass the setAuthUser function to validate
+	  }, []);
 
 	return <AuthContext.Provider value={{ authUser, setAuthUser }}>{children}</AuthContext.Provider>;
 };
