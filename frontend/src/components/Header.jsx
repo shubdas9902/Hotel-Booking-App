@@ -1,10 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../context/Authcontext'
+import logout from '../hooks/useLogout.js'
 
 
 const Header = () => {
   const {authUser}=useAuthContext()
+  const {logot}=logout()
   return (
     <div className='bg-blue-800 py-6'>
         <div className="container mx-auto flex justify-between">
@@ -19,12 +21,17 @@ const Header = () => {
                 <Link to='/hotels' className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100'>
                   Hotels
                 </Link>
-                <button className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100'> Sign Out </button>
+                <button className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100' onClick={logot}> Sign Out </button>
 
               </>:
-                <Link to='/signup' className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100'>
-                  SignIn
-                </Link>}
+                <><Link to='/register' className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100'>
+                  Register
+                </Link>
+                <Link to='/signin' className='flex bg-white items-center text-blue-600 px-3 font-bold hover:bg-gray-100'>
+                 SignIn
+                </Link>
+                </>
+                }
             </span>
             
 
